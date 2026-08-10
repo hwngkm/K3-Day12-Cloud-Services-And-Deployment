@@ -21,6 +21,7 @@ def verify_api_key(
 ) -> str:
     settings = get_settings()
     valid_keys = {
+        settings.agent_api_key,
         settings.gemini_api_key,
         settings.gemini_api_key_2,
         settings.gemini_api_key_3,
