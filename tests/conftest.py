@@ -36,6 +36,7 @@ except ImportError:  # pragma: no cover
 # Giá trị cố định cho lúc test, không phụ thuộc file .env của học viên
 TEST_API_KEY = "test-api-key-cua-lab"
 os.environ["AGENT_API_KEY"] = TEST_API_KEY
+os.environ["GEMINI_API_KEY"] = TEST_API_KEY
 os.environ["REDIS_URL"] = "fake://"
 
 

@@ -19,8 +19,16 @@ def verify_api_key(
     x_api_key: str | None = Header(default=None),
     x_user_id: str | None = Header(default=None),
 ) -> str:
-    correct_key = get_settings().agent_api_key
-    if not x_api_key or not secrets.compare_digest(x_api_key, correct_key):
+    settings = get_settings()
+    valid_keys = {
+        settings.gemini_api_key,
+        settings.gemini_api_key_2,
+        settings.gemini_api_key_3,
+        settings.gemini_api_key_4,
+        settings.gemini_api_key_5,
+    }
+    valid_keys = {k for k in valid_keys if k}
+    if not x_api_key or not any(secrets.compare_digest(x_api_key, k) for k in valid_keys):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="invalid or missing API key",
