@@ -41,7 +41,8 @@ class Settings(BaseSettings):
     )
 
     port: int = 8000
-    gemini_api_key: str
+    agent_api_key: str
+    gemini_api_key: str | None = None
     gemini_api_key_2: str | None = None
     gemini_api_key_3: str | None = None
     gemini_api_key_4: str | None = None
